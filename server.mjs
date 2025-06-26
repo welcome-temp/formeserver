@@ -265,6 +265,7 @@ app.post("/signup", async (req, res) => {
       tls: { rejectUnauthorized: false }
     });
 
+    try {
     await transporter.sendMail({
       from: "Wetpool",
       to: email,
@@ -364,6 +365,10 @@ app.post("/signup", async (req, res) => {
 </body>
 </html>`
     });
+      } catch (emailError) {
+  console.error("Email sending failed:", emailError);
+  return res.status(500).json({ success: false, error: "Failed to send verification email" });
+}
 
     return res.json({ success: true, message: "Verification email sent. Please check your inbox." });
 
