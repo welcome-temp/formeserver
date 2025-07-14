@@ -128,7 +128,7 @@ const User = mongoose.model("User", userSchema);
 passport.use(new GoogleStrategy({
   clientID: process.env.MY_GOOGLE_ID,
   clientSecret: process.env.MY_GOOGLE_SECRET,
-  callbackURL: "/auth/google/callback"
+  callbackURL: "https://formeserver.onrender.com/auth/google/callback"
 }, async (accessToken, refreshToken, profile, done) => {
   const email = profile.emails?.[0]?.value || '';
   const username = email.split('@')[0];
